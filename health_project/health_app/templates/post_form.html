@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="columns is-centered">
+        <h1 class="column is-half form-title">Post Form</h1>
+    </div>
+    <div class="columns is-centered">
+        <form method="POST" class="post-form column is-half" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="save custom-save-btn">Save</button>
+        </form>
+    </div>
+
+{% endblock %}

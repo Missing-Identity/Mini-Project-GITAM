@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if registered %}
+    <div class="columns is-centered">
+        <h1 class="column is-half form-title">Registered!</h1>
+    </div>
+    {% else %}
+    <div class="columns is-centered">
+        <h1 class="column is-half form-title">User Registration</h1>
+    </div>
+    <div class="columns is-centered">
+        <form method="POST" class="post-form column is-half" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{register_form.as_p}}
+            <button type="submit" class="save custom-save-btn">Save</button>
+        </form>
+    </div>
+    {% endif %}
+
+{% endblock %}

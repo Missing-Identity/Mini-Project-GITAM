@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="columns is-centered">
+    <h1 class="column is-half form-title">Please Login!</h1>
+</div>
+<div class="columns is-centered">
+    <form method="POST" action="{% url 'login' %}" class="post-form column is-half">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="Enter Username">
+        
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        
+        <button type="submit" class="save custom-save-btn">Login</button>
+    </form>
+</div>
+
+{% endblock content %}

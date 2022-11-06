@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="has-navbar-fixed-top">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BULMA CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- Pupertino CSS -->
+    <link rel="stylesheet" href="{% static 'css/newfull.css' %}">
+
+    <!-- Custom Form CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom-form.css' %}">
+
+    <title>Base</title>
+</head>
+<body class="p-layout">
+    
+    <nav class="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'index' %}">
+                Health
+            </a>
+    
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+    
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'index' %}">
+                    Home
+                </a>
+    
+                <a class="navbar-item" href="{% url 'post_list' %}">
+                    Post Feed
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'logout' %}" class="button is-white is-rounded">Logout</a>
+                            <a href="{% url 'post_form' %}" class="button is-white is-rounded">Post</a>
+                        {% else %}
+                            <a class="button is-black is-rounded" href="{% url 'userform' %}">
+                                <strong>Register</strong>
+                            </a>
+                            <a class="button is-white is-rounded" href="{% url 'login' %}">
+                                Login
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br>
+
+    {% if user.is_authenticated %}
+    <section class="hero is-success">
+        <div class="hero-body">
+            <p class="title">
+                Welcome!
+            </p>
+            <p class="subtitle">
+                {{user.username}}
+            </p>
+        </div>
+    </section>
+    <br>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- BULMA NAVBAR JS -->
+    <script src="../static/js/navbar.js"></script>
+</body>
+</html>
